@@ -68,15 +68,18 @@ public class BeerClientImpl implements BeerClient {
         restClient.put()
                 .uri(uriBuilder -> uriBuilder.path(GET_BEER_BY_ID_PATH).build(beerDto.getId()))
                 .body(beerDto)
-                .retrieve()
-                .toBodilessEntity();
+                .retrieve();
 
         return getBeerById(beerDto.getId());
     }
 
     @Override
     public void deleteBeer(UUID beerId) {
+        RestClient restClient = restClientBuilder.build();
 
+        restClient.delete()
+                .uri(uriBuilder -> uriBuilder.path(GET_BEER_BY_ID_PATH).build(beerId))
+                .retrieve();
     }
 }
 
