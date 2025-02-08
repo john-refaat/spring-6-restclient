@@ -55,6 +55,7 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
  * Created by jt, Spring Framework Guru.
  */
 @RestClientTest
+@Import(BeerClientMockTest.TestConfig.class)
 public class BeerClientMockTest {
 
     static final String URL = "http://localhost:8080";
@@ -126,7 +127,7 @@ public class BeerClientMockTest {
         when(mockRestTemplateBuilder.build()).thenReturn(restTemplate);
 
         //NOTE: RestClient is built using the mockRestTemplateBuilder.
-        beerClient = new BeerClientImpl(RestClient.builder(mockRestTemplateBuilder.build()));
+        beerClient = new BeerClientImpl(RestClient.builder(mockRestTemplateBuilder.build()), objectMapper);
         dto = getBeerDto();
         dtoJson = objectMapper.writeValueAsString(dto);
     }
@@ -251,6 +252,6 @@ public class BeerClientMockTest {
     }
 
     BeerDTOPageImpl getPage(){
-        return new BeerDTOPageImpl(Arrays.asList(getBeerDto()), 1, 25, 1);
+        return new BeerDTOPageImpl(Arrays.asList(getBeerDto()), 0, 1, 1);
     }
 }
