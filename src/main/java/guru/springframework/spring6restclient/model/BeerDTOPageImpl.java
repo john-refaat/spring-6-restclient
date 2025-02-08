@@ -17,8 +17,8 @@ public class BeerDTOPageImpl<BeerDTO> extends PageImpl<guru.springframework.spri
 
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
     public BeerDTOPageImpl(@JsonProperty("content")  List<guru.springframework.spring6restclient.model.BeerDTO> content,
-                           @JsonProperty("number") int page,
-                           @JsonProperty("size") int size,
+                           @JsonProperty("pageNumber") int page,
+                           @JsonProperty("pageSize") int size,
                            @JsonProperty("totalElements") long total) {
         super(content, PageRequest.of(page, size), total);
     }

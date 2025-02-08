@@ -90,7 +90,7 @@ class BeerClientImplTest {
     @Test
     void listBeersNoBeerName() {
 
-        beerClient.listBeers(null, null, null, null, null);
+        beerClient.listBeers();
     }
 
     @Test
